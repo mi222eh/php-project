@@ -48,4 +48,8 @@ class RegisterView{
     public function getPassword(){
         return $_POST[self::$Username];
     }
+    
+    public function getRePassword(){
+        return $_POST[self::$Password];
+    }
 }

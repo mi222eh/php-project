@@ -2,7 +2,7 @@
 
 class LayoutView{
     
-    public function render(ContainerView $ContainerView, NavigationView $NavigationView){
+    public function render(ContainerView $ContainerView, NavigationView $NavigationView, $isLoggedIn){
         echo'
         <!DOCTYPE html>
       <html>
@@ -15,14 +15,14 @@ class LayoutView{
             <div id="header">
                 '
                 .
-                    $this->generateHeader()
+                    $this->generateHeader($isLoggedIn)
                 .
                 '
             </div>
             <div id="nav">
                 '
                 .
-                    $NavigationView->response(false)
+                    $NavigationView->response($isLoggedIn)
                 .
                 '
             </div>
@@ -46,7 +46,13 @@ class LayoutView{
         
     }
     
-    private function generateHeader(){
-        return '<h1>To do list</h1>';
+    private function generateHeader($isLoggedIn){
+        if($isLoggedIn){
+            return '<h1>To do list</h1>';
+        }
+        else{
+            return '<h1>Welcome</h1>';
+        }
+        
     }
 }

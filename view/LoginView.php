@@ -2,11 +2,28 @@
 
 class LoginView{
     
+    private $LoginModel;
+    
     private static $Username = 'LOGINVIEW::USERNAME';
     private static $Password = 'LOGINVIEW::PASSWORD';
     private static $Login = 'LOGINVIEW::LOGIN';
+    private static $Logout = 'LOGINVIEW::LOGOUT';
+    
+    
+    function __construct(LoginModel $LoginModel){
+        $this->LoginModel = $LoginModel;
+    }
+    
     
     public function response(){
+        if($this->LoginModel->isLoggedIn()){
+            $name = $this->LoginModel->getCurrentUser();
+            var_dump($name);
+            return '<h1>LOGGED IN ($name)</h1>
+                    <form method="post" action="">
+                        <button type="submit" name="LOGINVIEW::LOGOUT" value="logout">Logout</button>
+                    </form>';
+        }
         $name = $this->getUserName();
         
         $ret = 
@@ -41,5 +58,9 @@ class LoginView{
     
     public function getPassword(){
         return $_POST[self::$Password];
+    }
+    
+    public function doesUserWantToLogout(){
+        return isset($_POST['LOGINVIEW::LOGOUT']);
     }
 }

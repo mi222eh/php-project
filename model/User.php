@@ -6,6 +6,7 @@ class User{
     
     private $name;
     private $password;
+    private $Notes = array();
     
     function __construct($name, $password){
         

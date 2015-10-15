@@ -18,18 +18,24 @@ class UserDAL{
     }
     
     //Returns a User
-    public function GetUserData($name){
-        $str = file_get_contents($this->dataDirectory . '/' . $this->userDirectory . '/' . $name);
+    public function getUserData($name){
+        
+        $path = $this->dataDirectory . '/' . $this->userDirectory . '/' . $name . '.user';
+        if(file_exists($path)){
+            $str = file_get_contents($path);
         if ($str == null){
             return null;
         }
         $user = unserialize($str);
         return $user;
+        }
+        return null;
+        
     }
     
     //Saves a User
-    public function SaveUserData($name, $user){
+    public function saveUserData($name, $user){
         $str = serialize($user);
-        file_put_contents($this->dataDirectory . '/'. $this->userDirectory . '/' . $name);
+        file_put_contents($this->dataDirectory . '/'. $this->userDirectory . '/' . $name . '.user', $str);
     }
 }

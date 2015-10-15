@@ -2,6 +2,7 @@
 
 class NavigationView{
     private static $Register = 'Register';
+    private static $NewNote = 'New';
     
     public function response($isLoggedIn){
         $ret = '';
