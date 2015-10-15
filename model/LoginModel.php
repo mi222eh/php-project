@@ -21,7 +21,6 @@ class LoginModel{
         $this->IsLoggedIn = $this->UserSession->isSessionSet(self::$LoginSessionString);
         if($this->IsLoggedIn){
             $this->CurrentUser = $this->UserDAL->getUserData($this->UserSession->getSession(self::$LoginSessionString));
-            var_dump($this->CurrentUser);
         }
     }
     
@@ -37,7 +36,7 @@ class LoginModel{
         }
         
         elseif(($this->admin->getName() == $name && $this->admin->getPassword() == $password) || $user->getPassword() == $password){
-            $this->setSession($this->admin->getName());
+            $this->setSession($name);
             return true;
         }
         else{

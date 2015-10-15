@@ -17,9 +17,8 @@ class LoginView{
     
     public function response(){
         if($this->LoginModel->isLoggedIn()){
-            $name = $this->LoginModel->getCurrentUser();
-            var_dump($name);
-            return '<h1>LOGGED IN ($name)</h1>
+            $user = $this->LoginModel->getCurrentUser();
+            return '<h1>LOGGED IN ('. $user->getName() .')</h1>
                     <form method="post" action="">
                         <button type="submit" name="LOGINVIEW::LOGOUT" value="logout">Logout</button>
                     </form>';
