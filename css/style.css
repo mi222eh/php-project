@@ -1,0 +1,49 @@
+#container{
+    width:900px;
+    margin: 0 auto;
+}
+
+form{
+    padding:10px;
+    background-color:grey;
+    width:50%;
+    margin:0 auto;
+    border-radius:10px;
+}
+#formheader{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+}
+
+form input{
+    display:block;
+    margin:5px;
+}
+
+form label{
+    display:inline-block;
+}
+h1 {
+    text-align:center;
+}
+
+#nav{
+    width:900px;
+    margin:0 auto;
+    text-align:center;
+}
+
+#nav ul{
+	padding-left: 0px;
+	position: relative;
+	text-align: center;
+	list-style: none;
+}
+#nav ul li{
+    display:inline-block;
+}
+
+#nav ul li a{
+	text-decoration: none;
+}
