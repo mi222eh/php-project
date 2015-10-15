@@ -62,6 +62,7 @@ h1 {
     background-color: #adf0ff;
     min-height: 900px;
     border-radius: 15px;
+    padding:5px;
 }
 #menu{
     padding: 10px;
@@ -69,4 +70,8 @@ h1 {
 
 a:hover{
     color: #040dff;
+}
+
+body{
+    background-color: #5d5a5c;
 }
