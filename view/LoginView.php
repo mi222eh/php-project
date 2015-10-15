@@ -18,16 +18,18 @@ class LoginView{
     public function response(){
         if($this->LoginModel->isLoggedIn()){
             $user = $this->LoginModel->getCurrentUser();
-            return '<h1>LOGGED IN ('. $user->getName() .')</h1>
-                    <form method="post" action="">
-                        <button type="submit" name="LOGINVIEW::LOGOUT" value="logout">Logout</button>
-                    </form>';
+            return '<div id="logout">
+                        <p>Logged in as: '. $user->getName() .'</p>
+                        <form method="post" action="">
+                            <button type="submit" name="'.self::$Logout .'" value="logout">Logout</button>
+                        </form>
+                    </div>';
         }
         $name = $this->getUserName();
         
         $ret = 
         '
-        <form method="post" action="">
+        <form method="post" action="" id="login">
                 <div id="formheader">
                     Login
                 </div id="formheader">

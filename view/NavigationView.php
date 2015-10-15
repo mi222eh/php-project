@@ -11,7 +11,7 @@ class NavigationView{
             $ret .= $this->generateNotLoggedInPage();
         }
         else{
-            
+            $ret .= $this->generateLoggedInPage();
         }
         $ret .= '</ul>';
         
@@ -31,6 +31,10 @@ class NavigationView{
                 </li>';
         }
         
+    }
+
+    private function generateLoggedInPage(){
+
     }
     
     

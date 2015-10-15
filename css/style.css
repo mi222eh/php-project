@@ -1,9 +1,8 @@
 #container{
-    width:900px;
     margin: 0 auto;
 }
 
-form{
+#login, #register{
     padding:10px;
     background-color:grey;
     width:50%;
@@ -29,7 +28,6 @@ h1 {
 }
 
 #nav{
-    width:900px;
     margin:0 auto;
     text-align:center;
 }
@@ -46,4 +44,14 @@ h1 {
 
 #nav ul li a{
 	text-decoration: none;
+}
+
+#logout {
+    text-align: center;
+    font-size: 20px;
+}
+
+#page{
+    width:900px;
+    margin:0 auto;
 }

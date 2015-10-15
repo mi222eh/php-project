@@ -16,7 +16,7 @@ class RegisterView{
     public function response(){
         $ret = 
         '
-        <form method="post" action="">
+        <form method="post" action="" id="register">
                 <div id="formheader">
                     Register
                 </div id="formheader">

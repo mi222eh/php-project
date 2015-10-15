@@ -1,6 +1,7 @@
 <?php
 
 class LayoutView{
+
     
     public function render(ContainerView $ContainerView, NavigationView $NavigationView, $isLoggedIn){
         echo'
@@ -12,35 +13,36 @@ class LayoutView{
           <link rel="stylesheet" type="text/css" href="css/style.css">
         </head>
         <body>
-            <div id="header">
-                '
-                .
-                    $this->generateHeader($isLoggedIn)
-                .
-                '
-            </div>
-            <div id="nav">
-                '
-                .
-                    $NavigationView->response($isLoggedIn)
-                .
-                '
-            </div>
-            <div id="container">
-                '.
-                    $this->renderContent($ContainerView)
-                .'
+            <div id="page">
+                <div id="header">
+                    '
+                    .
+                        $this->generateHeader($isLoggedIn)
+                    .
+                    '
+                </div>
+                <div id="nav">
+                    '
+                    .
+                        $NavigationView->response($isLoggedIn)
+                    .
+                    '
+                </div>
+                <div id="container">
+                    '.
+                        $this->renderContent($ContainerView, $isLoggedIn)
+                    .'
+                </div>
             </div>
          </body>
       </html>
         ';
     }
     
-    private function renderContent(ContainerView $ContainerView){
-        
-        //LOGIC FOR TYPE OF CONTENT RENDERED
+    private function renderContent(ContainerView $ContainerView, $isLoggedIn){
+
         $ret = '';
-        $ret = $ContainerView->response();
+        $ret = $ContainerView->response($isLoggedIn);
         
         return $ret;
         

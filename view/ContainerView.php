@@ -11,7 +11,7 @@ class ContainerView{
         $this->NavigationView = $NavigationView;
     }
     
-    public function response(){
+    public function response($isLoggedIn){
         if($this->NavigationView->doesUserWantToRegister()){
             return $this->RegisterView->response();
         }
