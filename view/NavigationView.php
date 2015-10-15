@@ -3,15 +3,16 @@
 class NavigationView{
     private static $Register = 'Register';
     private static $NewNote = 'New';
-    
+
+    /**
+     * @param $isLoggedIn
+     * @return string
+     */
     public function response($isLoggedIn){
         $ret = '';
         $ret .= '<ul>';
         if(!$isLoggedIn){
             $ret .= $this->generateNotLoggedInPage();
-        }
-        else{
-            $ret .= $this->generateLoggedInPage();
         }
         $ret .= '</ul>';
         
@@ -33,11 +34,10 @@ class NavigationView{
         
     }
 
-    private function generateLoggedInPage(){
 
-    }
-    
-    
+    /**
+     * @return bool
+     */
     public function doesUserWantToRegister(){
         return isset($_GET[self::$Register]);
     }

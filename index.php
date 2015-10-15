@@ -16,6 +16,7 @@ require_once("view/LoginView.php");
 require_once("view/LayoutView.php");
 require_once("view/ContainerView.php");
 require_once("view/NavigationView.php");
+require_once("view/ToDoListView.php");
 
 //Controllers
 require_once("controller/LoginController.php");
@@ -27,11 +28,12 @@ $RegisterModel = new RegisterModel();
 $loginModel = new LoginModel();
 
 //Create Views
+$toDoListView = new ToDoListView($loginModel);
 $navigationView = new NavigationView();
 $loginView = new LoginView($loginModel);
 $registerView = new RegisterView($RegisterModel);
 $layoutView = new LayoutView();
-$containerView = new ContainerView($loginView, $registerView, $navigationView);
+$containerView = new ContainerView($loginView, $registerView, $navigationView, $toDoListView);
 
 
 //Create Controllers

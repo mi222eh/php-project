@@ -2,7 +2,7 @@
 
 class LayoutView{
 
-    
+
     public function render(ContainerView $ContainerView, NavigationView $NavigationView, $isLoggedIn){
         echo'
         <!DOCTYPE html>

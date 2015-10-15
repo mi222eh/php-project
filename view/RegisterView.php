@@ -8,11 +8,17 @@ class RegisterView{
     private static $Register = 'REGISTERVIEW::REGISTER';
     
     private $RegisterModel;
-    
+
+    /**
+     * @param RegisterModel $RegisterModel
+     */
     function __construct(RegisterModel $RegisterModel){
         $this->RegisterModel = $RegisterModel;
     }
-    
+
+    /**
+     * @return string
+     */
     public function response(){
         $ret = 
         '
@@ -36,19 +42,31 @@ class RegisterView{
         
         return $ret;
     }
-    
+
+    /**
+     * @return bool
+     */
     public function didUserClickRegister(){
         return isset($_POST[self::$Register]);
     }
-    
+
+    /**
+     * @return String || NULL
+     */
     public function getUserName(){
         return $_POST[self::$Username];
     }
-    
+
+    /**
+     * @return String || NULL
+     */
     public function getPassword(){
         return $_POST[self::$Username];
     }
-    
+
+    /**
+     * @return String || NULL
+     */
     public function getRePassword(){
         return $_POST[self::$Password];
     }
