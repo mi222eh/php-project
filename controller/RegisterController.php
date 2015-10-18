@@ -15,7 +15,7 @@ class RegisterController{
             $password = $this->RegisterView->getPassword();
             $repassword = $this->RegisterView->getRePassword();
             if($this->RegisterModel->register($name, $password)){
-                header("location: ?");
+
             }
             
         }

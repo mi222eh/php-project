@@ -5,18 +5,21 @@ class ContainerView{
     private $RegisterView;
     private $NavigationView;
     private $ToDoListView;
+    private $CreateToDoView;
 
     /**
      * @param LoginView $LoginView
      * @param RegisterView $RegisterView
      * @param NavigationView $NavigationView
-     * @param ToDoListView $ToDoListView
+     * @param ToDoView $ToDoListView
+     * @param CreateToDoView $CreateToDoView
      */
-    function __construct(LoginView $LoginView, RegisterView $RegisterView, NavigationView $NavigationView, ToDoListView $ToDoListView){
+    function __construct(LoginView $LoginView, RegisterView $RegisterView, NavigationView $NavigationView, ToDoView $ToDoListView, CreateToDoView $CreateToDoView){
         $this->LoginView = $LoginView;
         $this->RegisterView = $RegisterView;
         $this->NavigationView = $NavigationView;
         $this->ToDoListView = $ToDoListView;
+        $this->CreateToDoView = $CreateToDoView;
     }
 
     /**
@@ -25,13 +28,24 @@ class ContainerView{
      */
     public function response($isLoggedIn){
         $ret = '';
-        if($this->NavigationView->doesUserWantToRegister()){
-            return $this->RegisterView->response();
-        }
-        else {
+        if($isLoggedIn){
             $ret .= $this->LoginView->response();
-            if($isLoggedIn){
+            if($this->NavigationView->doesUserWantToRegister()){
+                $ret .= $this->RegisterView->response();
+            }
+            elseif($this->ToDoListView->doesUserWantToCreate()){
+                $ret .= $this->CreateToDoView->response();
+            }
+            else{
                 $ret .= $this->ToDoListView->response();
+            }
+        }
+        else{
+            if($this->NavigationView->doesUserWantToRegister()){
+                $ret .= $this->RegisterView->response();
+            }
+            else{
+                $ret .= $this->LoginView->response();
             }
         }
 

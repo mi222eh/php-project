@@ -6,7 +6,7 @@ class User{
     
     private $name;
     private $password;
-    private $Notes = array();
+    private $Tasks = array();
     
     function __construct($name, $password){
         
@@ -28,5 +28,31 @@ class User{
     
     public function getPassword(){
         return $this->password;
+    }
+
+    public function getTasks(){
+        return $this->Tasks;
+    }
+
+    public function addNote($task, $details){
+        $id = 0;
+        foreach ($this->Tasks as $note) {
+            if($note->getId() > $id){
+                $id = $note->getId();
+            }
+        }
+        $id += 1;
+
+        $this->Tasks[] = new Task($task, $details, $id);
+    }
+
+    public function getTaskById($Id){
+        $task = null;
+        foreach($this->Tasks as $note){
+            if($note->getId() == $Id){
+                return $note;
+            }
+        }
+        return $task;
     }
 }
