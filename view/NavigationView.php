@@ -2,7 +2,6 @@
 
 class NavigationView{
     private static $Register = 'Register';
-    private static $NewNote = 'New';
 
     /**
      * @param $isLoggedIn

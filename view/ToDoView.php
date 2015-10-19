@@ -29,6 +29,7 @@ class ToDoView{
         }
         else{
             $ret .= $this->generateToDoList();
+            $ret .= '<div style="clear:both"></div>';
         }
 
         return $ret;
@@ -100,7 +101,7 @@ class ToDoView{
                 $ret .= $task->getTitle();
                 $ret .= '</a>';
                 $ret .= '</div>';
-                $ret .= $this->generateLinksForTask($task->getId());
+                $ret .= $this->generateLinksForTask($task->getId(), $task->IsTaskFinished());
                 $ret .= '</li>';
             }
         }
@@ -128,24 +129,47 @@ class ToDoView{
         $id = $this->getTaskid();
         $user = $this->LoginModel->getCurrentUser();
         $task = $user->getTaskById($id);
-        var_dump($id);
+        $details = $task->getDetails();
         if(empty($task) && $task == null) {
-            return '<p class="middle">Error loading task</p>';
+            $ret .='<p class="middle">Error loading task</p>';
         }
         else{
-            return$this->generateLinksForTask($id);
+            $ret .= '<div id="task">';
+            $ret .='<div class="taskTitle">'.
+                        $task->getTitle()
+                    .'</div>
+                    <div class="center">
+                        <p>'.
+                        nl2br($details)
+                        .'</p>
+                    </div>';
+
+            $ret .=$this->generateLinksForTask($id, $task->IsTaskFinished());
+            $ret .= '</div>';
         }
+
+        return $ret;
     }
 
-    private function generateLinksForTask($id){
+    private function generateLinksForTask($id, $isFinished){
         return '<div class="middle">
-                    <a class="button" href="?'. self::$Edit .'">Edit</a>
+                    <a class="button" href="?'. self::$Edit .'='. $id .'">Edit</a>
                     <form method="post" action="">
-                        <button type="submit" name="'. self::$Delete .'" value="'. $id .'">Delete</button>
-                        <button type="submit" name="'. self::$Finish .'" value="'. $id .'">Finished</button>
-                    </form>
+                        <button type="submit" name="'. self::$Delete .'" value="'. $id .'">Delete</button>'.
+                        $this->generateFinishButton($id, $isFinished)
+                    .'</form>
                 </div>
                 ';
+    }
+
+    private function generateFinishButton($id, $isFinished){
+        if($isFinished){
+            return '<button type="submit" name="'. self::$Unfinish .'" value="'. $id .'">UnFinish</button>';
+        }
+        else{
+            return '<button type="submit" name="'. self::$Finish .'" value="'. $id .'">Finish</button>';
+        }
+
     }
 
 
@@ -177,5 +201,29 @@ class ToDoView{
 
     public function getDeleteId(){
         return $_POST[self::$Delete];
+    }
+
+    public function doesUserWantToFinish(){
+        return isset($_POST[self::$Finish]);
+    }
+
+    public function getFinishId(){
+        return $_POST[self::$Finish];
+    }
+
+    public function doesUserWantToUnFinish(){
+        return isset($_POST[self::$Unfinish]);
+    }
+
+    public function getUnfinishId(){
+        return $_POST[self::$Unfinish];
+    }
+
+    public function doesUserWantToEdit(){
+        return isset($_GET[self::$Edit]);
+    }
+
+    public function getEditId(){
+        return $_GET[self::$Edit];
     }
 }

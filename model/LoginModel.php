@@ -52,7 +52,10 @@ class LoginModel{
         $this->removeSession();
     }
     
-    //Returns current user
+
+    /**
+     * @return User|null
+     */
     public function getCurrentUser(){
         return $this->CurrentUser;
     }

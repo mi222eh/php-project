@@ -46,6 +46,10 @@ class User{
         $this->Tasks[] = new Task($task, $details, $id);
     }
 
+    /**
+     * @param $Id
+     * @return Task || null
+     */
     public function getTaskById($Id){
         $task = null;
         foreach($this->Tasks as $note){
@@ -62,6 +66,25 @@ class User{
                 unset($this->Tasks[$key]);
                 return;
             }
+        }
+    }
+
+    public function finishTask($id){
+        $task = $this->getTaskById($id);
+        $task->setFinished(true);
+
+    }
+
+    public function unFinishTask($id){
+        $task = $this->getTaskById($id);
+        $task->setFinished(false);
+    }
+
+    public function editTask($id, $title, $details){
+        $task = $this->getTaskById($id);
+        if(!empty($task)){
+            $task->setTitle($title);
+            $task->setDetails($details);
         }
     }
 }

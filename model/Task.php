@@ -28,4 +28,16 @@ class Task{
     public function IsTaskFinished(){
         return $this->IsFinished;
     }
+
+    public function setFinished($isFinished){
+        $this->IsFinished = $isFinished;
+    }
+
+    public function setTitle($title){
+        $this->Title = $title;
+    }
+
+    public function setDetails($details){
+        $this->Details = $details;
+    }
 }

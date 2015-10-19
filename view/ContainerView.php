@@ -36,6 +36,9 @@ class ContainerView{
             elseif($this->ToDoListView->doesUserWantToCreate()){
                 $ret .= $this->CreateToDoView->response();
             }
+            elseif($this->ToDoListView->doesUserWantToEdit()){
+                $ret .=$this->CreateToDoView->response();
+            }
             else{
                 $ret .= $this->ToDoListView->response();
             }
@@ -48,9 +51,6 @@ class ContainerView{
                 $ret .= $this->LoginView->response();
             }
         }
-
         return $ret;
-
-
     }
 }

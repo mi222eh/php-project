@@ -148,10 +148,23 @@ form{
     font-size: 24px;
 }
 #right{
-    width:50%;
+    width:calc(50% - 3px);
     float:right;
+    border-left: 3px black dashed;
+    height: 100%;
 }
 
 .middle{
     margin:0 auto;
+}
+
+#task{
+    background-color: #58cfff;
+    width:40%;
+    margin:0 auto;
+    border-radius: 15px;
+}
+
+#task p{
+    text-align: center;
 }
