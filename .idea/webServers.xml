@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7b56c5b5-ecd5-4dfd-bbc2-60a470e66462" name="Public" url="http://mi222eh2.webatu.com">
+        <fileTransfer host="mi222eh2.webatu.com" port="21" rootFolder="/public_html" password="dfc6dfc3dfdedfdedfc6dfcfdfc8dfc3dfcddfc8dfc6dfcbdfc9dfc1dfcddfcfdfcbdfd8df9bdf99" username="a1871231">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -25,6 +25,7 @@ require_once("controller/LoginController.php");
 require_once("controller/RegisterController.php");
 require_once("controller/MainController.php");
 require_once("controller/CreateToDoController.php");
+require_once("controller/DeleteToDoController.php");
 
 //Create Models
 $RegisterModel = new RegisterModel();
@@ -42,10 +43,11 @@ $containerView = new ContainerView($loginView, $registerView, $navigationView, $
 
 
 //Create Controllers
+$deleteToDoController = new DeleteToDoController($toDoListView, $loginModel);
 $createToDoController = new CreateToDoController($createToDoView, $loginModel, $addTaskModel);
 $loginController = new LoginController($loginView, $loginModel);
 $registerController = new RegisterController($registerView, $RegisterModel);
-$MainController = new MainController($containerView, $navigationView,$toDoListView ,$loginController, $registerController, $createToDoController);
+$MainController = new MainController($containerView, $navigationView,$toDoListView ,$loginController, $registerController, $createToDoController, $deleteToDoController);
 
 
 

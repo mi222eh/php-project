@@ -19,9 +19,7 @@ class CreateToDoController{
             $Details = $this->CreateToDoView->getDetails();
 
             $this->AddTaskModel->addTaskToUser($this->LoginModel->getCurrentUser()->getName(), $Task, $Details);
-
-            var_dump($Task);
-            var_dump($Details);
+            header("location: ?");
         }
     }
 }

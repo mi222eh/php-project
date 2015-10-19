@@ -27,6 +27,7 @@ form textarea{
     min-width: 40%;
     min-height: 50px;
     display:block;
+    margin:5px;
 }
 
 form label{
@@ -91,9 +92,7 @@ body{
     text-align: center;
 }
 
-.task{
-    background-color: #58cfff;
-}
+
 
 .button {
     margin-left: 2px;
@@ -112,5 +111,47 @@ form{
 }
 
 .center{
+    margin:0 auto;
+}
+
+#tasks{
+
+}
+#tasks ul{
+    padding:0;
+}
+#tasks ul li{
+    list-style: none;
+}
+
+.task{
+    background-color: #58cfff;
+    border-radius: 15px;
+    padding:5px;
+    margin:5px;
+    word-wrap: break-word;
+}
+
+.taskTitle{
+    display:block;
+    text-align: center;
+    text-decoration: none;
+    color: #000297;
+    font-size: 24px;
+}
+#left{
+    width:50%;
+    float:left;
+}
+.listTitle{
+    text-align: center;
+    font-size: 24px;
+}
+#right{
+    width:50%;
+    float:right;
+}
+
+.middle{
     margin:0 auto;
 }

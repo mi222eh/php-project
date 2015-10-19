@@ -43,6 +43,10 @@ class LoginModel{
             return false;
         }
     }
+
+    public function saveCurrentUser(){
+        $this->UserDAL->saveUserData($this->CurrentUser->getName(), $this->CurrentUser);
+    }
     
     public function logout(){
         $this->removeSession();

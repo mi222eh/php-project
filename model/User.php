@@ -55,4 +55,13 @@ class User{
         }
         return $task;
     }
+
+    public function deleteTask($id){
+        foreach($this->Tasks as $key=>$task){
+            if($task->getId() == $id){
+                unset($this->Tasks[$key]);
+                return;
+            }
+        }
+    }
 }

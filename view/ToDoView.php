@@ -67,19 +67,43 @@ class ToDoView{
     private function generateList($tasks){
         $ret = '';
         $ret .= '<div id="tasks">
-                    <ul>';
+                    <div id="left">
+                        <div class="listTitle">
+                            <p>Unfinished</p>
+                        </div>
+                        <ul>';
+        $ret .= $this->generateTasks($tasks, false);
+        $ret .= '       </ul>
+                    </div>';
 
-        foreach ($tasks as $task) {
-            $ret .= '<li class="task">';
-            $ret .= '<a href="?'. self::$Task .'='. $task->getId() .'">';
-            $ret .= $task->getTitle();
-            $ret .= '</a>';
-            $ret .= $this->generateLinksForTask($task->getId());
-            $ret .= '</li>';
-        }
-
-        $ret .= '    </ul>
+        $ret .= '   <div id="right">
+                        <div class="listTitle">
+                            <p>Finished</p>
+                        </div>
+                        <ul>';
+        $ret .= $this->generateTasks($tasks, true);
+        $ret .= '       </ul>
+                    </div>
                 </div>';
+
+        return $ret;
+    }
+
+    private function generateTasks($tasks, $isFinished){
+        $ret = '';
+        foreach ($tasks as $task) {
+
+            if($task->IsTaskFinished() == $isFinished){
+                $ret .= '<li class="task">';
+                $ret .= '<div class="taskTitle">';
+                $ret .= '<a href="?'. self::$Task .'='. $task->getId() .'">';
+                $ret .= $task->getTitle();
+                $ret .= '</a>';
+                $ret .= '</div>';
+                $ret .= $this->generateLinksForTask($task->getId());
+                $ret .= '</li>';
+            }
+        }
 
         return $ret;
     }
@@ -114,13 +138,17 @@ class ToDoView{
     }
 
     private function generateLinksForTask($id){
-        return '
-                <form method="post" action="">
-                    <button type="submit" name="'. self::$Delete .'" value="'. $id .'">Delete</button>
-                    <button type="submit" name="'. self::$Finish .'" value="'. $id .'">Finished</button>
-                </form>
-                <a class="button" href="?'. self::$Edit .'">Edit</a>';
+        return '<div class="middle">
+                    <a class="button" href="?'. self::$Edit .'">Edit</a>
+                    <form method="post" action="">
+                        <button type="submit" name="'. self::$Delete .'" value="'. $id .'">Delete</button>
+                        <button type="submit" name="'. self::$Finish .'" value="'. $id .'">Finished</button>
+                    </form>
+                </div>
+                ';
     }
+
+
 
     /**
      * @return bool
@@ -141,5 +169,13 @@ class ToDoView{
      */
     public function getTaskid(){
         return $_GET[self::$Task];
+    }
+
+    public function doesUserWantToDelete(){
+        return isset($_POST[self::$Delete]);
+    }
+
+    public function getDeleteId(){
+        return $_POST[self::$Delete];
     }
 }

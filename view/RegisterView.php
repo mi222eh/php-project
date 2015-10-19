@@ -33,8 +33,8 @@ class RegisterView{
                 <label for="'. self::$Password .'">Password :</label>
                 <input type="password" id="'. self::$Password .'" name="'. self::$Password .'">
                 
-                <label for="'. self::$Password .'">Repeat Password :</label>
-                <input type="password" id="'. self::$Password .'" name="'. self::$Password .'">
+                <label for="'. self::$PasswordRepeat .'">Repeat Password :</label>
+                <input type="password" id="'. self::$PasswordRepeat .'" name="'. self::$PasswordRepeat .'">
                 
                 <input type="submit" name="'. self::$Register .'" value="Register">
         </form>
@@ -61,13 +61,13 @@ class RegisterView{
      * @return String || NULL
      */
     public function getPassword(){
-        return $_POST[self::$Username];
+        return $_POST[self::$Password];
     }
 
     /**
      * @return String || NULL
      */
     public function getRePassword(){
-        return $_POST[self::$Password];
+        return $_POST[self::$PasswordRepeat];
     }
 }
