@@ -3,8 +3,12 @@
 class LoginController{
     private $LoginView;
     private $LoginModel;
-    
-    
+
+
+    /**
+     * @param LoginView $LoginView
+     * @param LoginModel $LoginModel
+     */
     function __construct(LoginView $LoginView, LoginModel $LoginModel){
         $this->LoginView = $LoginView;
         $this->LoginModel = $LoginModel;

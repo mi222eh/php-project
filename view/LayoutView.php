@@ -3,6 +3,11 @@
 class LayoutView{
 
 
+    /**
+     * @param ContainerView $ContainerView
+     * @param NavigationView $NavigationView
+     * @param $isLoggedIn
+     */
     public function render(ContainerView $ContainerView, NavigationView $NavigationView, $isLoggedIn){
         echo'
         <!DOCTYPE html>
@@ -38,7 +43,12 @@ class LayoutView{
       </html>
         ';
     }
-    
+
+    /**
+     * @param ContainerView $ContainerView
+     * @param $isLoggedIn
+     * @return string
+     */
     private function renderContent(ContainerView $ContainerView, $isLoggedIn){
 
         $ret = '';
@@ -47,7 +57,11 @@ class LayoutView{
         return $ret;
         
     }
-    
+
+    /**
+     * @param $isLoggedIn
+     * @return string
+     */
     private function generateHeader($isLoggedIn){
         if($isLoggedIn){
             return '<h1>To do list</h1>';

@@ -123,15 +123,6 @@ form{
 #tasks ul li{
     list-style: none;
 }
-
-.task{
-    background-color: #58cfff;
-    border-radius: 15px;
-    padding:5px;
-    margin:5px;
-    word-wrap: break-word;
-}
-
 .taskTitle{
     display:block;
     text-align: center;
@@ -140,8 +131,19 @@ form{
     font-size: 24px;
 }
 #left{
+    background-color: #a51115;
     width:50%;
     float:left;
+    min-height: 634px;
+    border-radius: 10px;
+    border-right:dashed #000000 1.5px;
+}
+#left .task{
+    background-color: #e35354;
+    border-radius: 15px;
+    padding:5px;
+    margin:5px;
+    word-wrap: break-word;
 }
 .listTitle{
     text-align: center;
@@ -150,8 +152,19 @@ form{
 #right{
     width:calc(50% - 3px);
     float:right;
-    border-left: 3px black dashed;
     height: 100%;
+    background-color: #0f8224;
+    min-height: 634px;
+    border-radius: 10px;
+    border-left:dashed #000000 1.5px;
+}
+
+#right .task{
+    background-color: #83dc88;
+    border-radius: 15px;
+    padding:5px;
+    margin:5px;
+    word-wrap: break-word;
 }
 
 .middle{

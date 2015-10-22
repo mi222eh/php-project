@@ -4,11 +4,19 @@ class EditToDoController{
     private $LoginModel;
     private $ToDoView;
     private $CreateToDoView;
+    private $AddTaskModel;
 
-    function __construct(LoginModel $loginModel, ToDoView $toDoView, CreateToDoView $createToDoView){
+    /**
+     * @param LoginModel $loginModel
+     * @param ToDoView $toDoView
+     * @param CreateToDoView $createToDoView
+     * @param AddTaskModel $addTaskModel
+     */
+    function __construct(LoginModel $loginModel, ToDoView $toDoView, CreateToDoView $createToDoView, AddTaskModel $addTaskModel){
         $this->LoginModel = $loginModel;
         $this->CreateToDoView = $createToDoView;
         $this->ToDoView = $toDoView;
+        $this->AddTaskModel = $addTaskModel;
     }
 
     public function doEdit(){
@@ -22,10 +30,10 @@ class EditToDoController{
             $title = $this->CreateToDoView->getTask();
             $details = $this->CreateToDoView->getDetails();
             $user = $this->LoginModel->getCurrentUser();
-            $user->editTask($id, $title, $details);
-
-            $this->LoginModel->saveCurrentUser();
-            header("location: ?");
+            if($this->AddTaskModel->editTaskToUser($user, $title, $details, $id)){
+                $this->LoginModel->saveCurrentUser();
+                header("location: ?");
+            }
         }
     }
 }

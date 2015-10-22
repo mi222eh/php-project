@@ -35,7 +35,7 @@ $loginModel = new LoginModel();
 $addTaskModel = new AddTaskModel();
 
 //Create Views
-$createToDoView = new CreateToDoView($loginModel);
+$createToDoView = new CreateToDoView($loginModel, $addTaskModel);
 $toDoListView = new ToDoView($loginModel);
 $navigationView = new NavigationView();
 $loginView = new LoginView($loginModel);
@@ -45,12 +45,12 @@ $containerView = new ContainerView($loginView, $registerView, $navigationView, $
 
 
 //Create Controllers
-$editToDoController = new EditToDoController($loginModel, $toDoListView, $createToDoView);
+$editToDoController = new EditToDoController($loginModel, $toDoListView, $createToDoView, $addTaskModel);
 $finishToDoController = new FinishToDoController($toDoListView, $loginModel);
 $deleteToDoController = new DeleteToDoController($toDoListView, $loginModel);
 $createToDoController = new CreateToDoController($createToDoView, $loginModel, $addTaskModel);
 $loginController = new LoginController($loginView, $loginModel);
-$registerController = new RegisterController($registerView, $RegisterModel);
+$registerController = new RegisterController($registerView, $RegisterModel, $loginModel);
 $MainController = new MainController($containerView, $navigationView,$toDoListView ,$loginController, $registerController, $createToDoController, $deleteToDoController, $finishToDoController, $editToDoController);
 
 

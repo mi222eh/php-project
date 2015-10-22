@@ -20,26 +20,59 @@ class RegisterView{
      * @return string
      */
     public function response(){
-        $ret = 
-        '
+        $messages = array();
+        if($this->RegisterModel->isPassWordsDontMatch()){
+            $messages[] = 'Passwords do not match';
+        }
+        if($this->RegisterModel->isShortUsername()){
+            $messages[] = 'Username is too short';
+        }
+        if($this->RegisterModel->isShortPassword()) {
+            $messages[] = 'Password is too short';
+        }
+        if($this->RegisterModel->isUserAlreadyExist()){
+            $messages[] = 'Username already exist';
+        }
+        if($this->RegisterModel->isUsernameHasInvalidCharacters()){
+            $messages[] = 'Username has invalid characters';
+        }
+
+        $ret = $this->generateRegisterForm($messages);
+        return $ret;
+    }
+
+    /**
+     * @param array $messages
+     * @return string
+     */
+    private function generateRegisterForm($messages){
+
+        $messagesToRender = '';
+        foreach ($messages as $message) {
+            $messagesToRender .= $message . '<br>';
+        }
+
+
+        $ret =
+            '
         <form method="post" action="" id="register">
                 <div id="formheader">
                     Register
-                </div id="formheader">
-                <p id="">
+                </div>
+                <p id="'. self::$Message .'">'. $messagesToRender .'</p>
                 <label for="'. self::$Username .'">Username :</label>
-                <input type="text" id="'. self::$Username .'" name="'. self::$Username .'">
-                
+                <input type="text" id="'. self::$Username .'" name="'. self::$Username .'" value="'. $this->RegisterModel->stripUsername($this->getUserName()) .'">
+
                 <label for="'. self::$Password .'">Password :</label>
                 <input type="password" id="'. self::$Password .'" name="'. self::$Password .'">
-                
+
                 <label for="'. self::$PasswordRepeat .'">Repeat Password :</label>
                 <input type="password" id="'. self::$PasswordRepeat .'" name="'. self::$PasswordRepeat .'">
-                
+
                 <input type="submit" name="'. self::$Register .'" value="Register">
         </form>
         ';
-        
+
         return $ret;
     }
 
@@ -54,7 +87,10 @@ class RegisterView{
      * @return String || NULL
      */
     public function getUserName(){
-        return $_POST[self::$Username];
+        if (isset($_POST[self::$Username])){
+            return $_POST[self::$Username];
+        }
+        return '';
     }
 
     /**

@@ -17,7 +17,11 @@ class UserDAL{
         }
     }
     
-    //Returns a User
+
+    /**
+     * @param $name
+     * @return User|null
+     */
     public function getUserData($name){
         
         $path = $this->dataDirectory . '/' . $this->userDirectory . '/' . $name . '.user';
@@ -32,8 +36,12 @@ class UserDAL{
         return null;
         
     }
-    
-    //Saves a User
+
+
+    /**
+     * @param $name
+     * @param $user
+     */
     public function saveUserData($name, $user){
         $str = serialize($user);
         file_put_contents($this->dataDirectory . '/'. $this->userDirectory . '/' . $name . '.user', $str);

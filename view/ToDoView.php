@@ -52,10 +52,6 @@ class ToDoView{
     private function generateToDoList(){
         $user = $this->LoginModel->getCurrentUser();
         $tasks = $user->getTasks();
-        if(empty($tasks)){
-            return '<p class="middle">No tasks were found</p>';
-        }
-
         return $this->generateList($tasks);
 
     }
@@ -90,6 +86,11 @@ class ToDoView{
         return $ret;
     }
 
+    /**
+     * @param $tasks
+     * @param $isFinished
+     * @return string
+     */
     private function generateTasks($tasks, $isFinished){
         $ret = '';
         foreach ($tasks as $task) {
@@ -124,6 +125,9 @@ class ToDoView{
         return $ret;
     }
 
+    /**
+     * @return string
+     */
     private function generateTask(){
         $ret = '';
         $id = $this->getTaskid();
@@ -151,6 +155,11 @@ class ToDoView{
         return $ret;
     }
 
+    /**
+     * @param $id
+     * @param $isFinished
+     * @return string
+     */
     private function generateLinksForTask($id, $isFinished){
         return '<div class="middle">
                     <a class="button" href="?'. self::$Edit .'='. $id .'">Edit</a>
@@ -162,6 +171,11 @@ class ToDoView{
                 ';
     }
 
+    /**
+     * @param $id
+     * @param $isFinished
+     * @return string
+     */
     private function generateFinishButton($id, $isFinished){
         if($isFinished){
             return '<button type="submit" name="'. self::$Unfinish .'" value="'. $id .'">UnFinish</button>';
@@ -195,34 +209,58 @@ class ToDoView{
         return $_GET[self::$Task];
     }
 
+    /**
+     * @return bool
+     */
     public function doesUserWantToDelete(){
         return isset($_POST[self::$Delete]);
     }
 
+    /**
+     * @return mixed
+     */
     public function getDeleteId(){
         return $_POST[self::$Delete];
     }
 
+    /**
+     * @return bool
+     */
     public function doesUserWantToFinish(){
         return isset($_POST[self::$Finish]);
     }
 
+    /**
+     * @return mixed
+     */
     public function getFinishId(){
         return $_POST[self::$Finish];
     }
 
+    /**
+     * @return bool
+     */
     public function doesUserWantToUnFinish(){
         return isset($_POST[self::$Unfinish]);
     }
 
+    /**
+     * @return mixed
+     */
     public function getUnfinishId(){
         return $_POST[self::$Unfinish];
     }
 
+    /**
+     * @return bool
+     */
     public function doesUserWantToEdit(){
         return isset($_GET[self::$Edit]);
     }
 
+    /**
+     * @return mixed
+     */
     public function getEditId(){
         return $_GET[self::$Edit];
     }

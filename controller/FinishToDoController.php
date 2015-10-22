@@ -4,6 +4,10 @@ class FinishToDoController{
     private $ToDoView;
     private $LoginModel;
 
+    /**
+     * @param ToDoView $toDoView
+     * @param LoginModel $loginModel
+     */
     function __construct(ToDoView $toDoView, LoginModel $loginModel){
         $this->ToDoView = $toDoView;
         $this->LoginModel = $loginModel;

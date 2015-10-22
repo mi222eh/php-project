@@ -18,7 +18,10 @@ class NavigationView{
         return $ret;
         
     }
-    
+
+    /**
+     * @return string
+     */
     private function generateNotLoggedInPage(){
         if($this->doesUserWantToRegister()){
             return '<li>

@@ -13,7 +13,18 @@ class MainController{
     private $DeleteToDoController;
     private $FinishToDoController;
     private $EditToDoController;
-    
+
+    /**
+     * @param ContainerView $ContainerView
+     * @param NavigationView $NavigationView
+     * @param ToDoView $ToDoListView
+     * @param LoginController $LoginController
+     * @param RegisterController $RegisterController
+     * @param CreateToDoController $createToDoController
+     * @param DeleteToDoController $deleteToDoController
+     * @param FinishToDoController $finishToDoController
+     * @param EditToDoController $editToDoController
+     */
     function __construct(ContainerView $ContainerView, NavigationView $NavigationView,ToDoView $ToDoListView ,LoginController $LoginController, RegisterController $RegisterController, CreateToDoController $createToDoController, DeleteToDoController $deleteToDoController, FinishToDoController $finishToDoController, EditToDoController $editToDoController){
         $this->ContainerView = $ContainerView;
         $this->NavigationView = $NavigationView;
