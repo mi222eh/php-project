@@ -25,10 +25,10 @@ class RegisterView{
             $messages[] = 'Passwords do not match';
         }
         if($this->RegisterModel->isShortUsername()){
-            $messages[] = 'Username is too short';
+            $messages[] = 'Username must be at least three characters long';
         }
         if($this->RegisterModel->isShortPassword()) {
-            $messages[] = 'Password is too short';
+            $messages[] = 'Password must be at least six characters long';
         }
         if($this->RegisterModel->isUserAlreadyExist()){
             $messages[] = 'Username already exist';

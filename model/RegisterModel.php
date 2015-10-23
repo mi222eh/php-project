@@ -127,7 +127,7 @@ class RegisterModel{
      * @return bool
      */
     private function validatePassword($password){
-        return (mb_strlen($password, "UTF-8") > 6);
+        return (mb_strlen($password, "UTF-8") >= 6);
     }
 
     /**
