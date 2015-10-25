@@ -10,6 +10,7 @@ require_once("model/User.php");
 require_once("model/RegisterModel.php");
 require_once("model/UserSession.php");
 require_once("model/AddTaskModel.php");
+require_once("model/PasswordModel.php");
 
 //Views
 require_once("view/RegisterView.php");

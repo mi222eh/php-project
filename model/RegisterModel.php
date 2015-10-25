@@ -2,6 +2,7 @@
 
 class RegisterModel{
     private $UserDAL;
+    private $passwordModel;
 
     private $userAlreadyExist = false;
     private $passWordsDontMatch = false;
@@ -55,6 +56,7 @@ class RegisterModel{
      */
     function __construct(){
         $this->UserDAL = new UserDAL();
+        $this->passwordModel = new PasswordModel();
     }
 
     /**
@@ -89,7 +91,7 @@ class RegisterModel{
                 $this->userAlreadyExist = true;
             }
             if($canRegister){
-                $user = new User($name, $password);
+                $user = new User($name, $this->passwordModel->hashPassword($password));
                 $this->UserDAL->saveUserData($name, $user);
             }
         }

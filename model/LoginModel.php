@@ -6,6 +6,7 @@ class LoginModel{
     private static $LoginTempName = 'SESSION:TEMPNAME';
     
     private $UserDAL;
+    private $passwordModel;
     private $UserSession;
     private $IsLoggedIn;
     
@@ -22,6 +23,7 @@ class LoginModel{
     function __construct(){
         $this->UserDAL = new UserDAL();
         $this->UserSession = new UserSession();
+        $this->passwordModel = new PasswordModel();
         
         $this->IsLoggedIn = $this->UserSession->isSessionSet(self::$LoginSessionString);
         if($this->IsLoggedIn){
@@ -59,7 +61,7 @@ class LoginModel{
                 $this->failedLogin = true;
             }
             else{
-                if($user->getPassword() == $password){
+                if($this->passwordModel->compare($user->getPassword(), $password)){
                     $this->setSession($name);
                 }
                 else{
