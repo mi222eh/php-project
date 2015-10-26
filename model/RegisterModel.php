@@ -121,7 +121,7 @@ class RegisterModel{
      * @return bool
      */
     private function validateUsername($name){
-        return (mb_strlen($name, "UTF-8") > 3);
+        return (mb_strlen($name, "UTF-8") >= 3);
     }
 
     /**
